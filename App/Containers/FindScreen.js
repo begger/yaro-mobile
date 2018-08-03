@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
+import { ScrollView, Text, WebView, View } from 'react-native'
 import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import { Header, Button } from './components/common';
 
 // Styles
 import styles from './Styles/FindScreenStyle'
 
 class FindScreen extends Component {
+  onPressHome() {
+    this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }));
+  }
   render () {
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>FindScreen</Text>
-        </KeyboardAvoidingView>
-      </ScrollView>
+        <WebView
+          source={{uri: 'https://maps.google.com/maps?q=Pharmacy&hl=en'}}
+          style={{marginTop: 50}}
+        />
+      
     )
   }
 }

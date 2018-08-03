@@ -37,7 +37,7 @@ class HomeScreen extends Component {
                 <Button onPress={() => this.onButtonPress('FindScreen')}>Find Pharmacy</Button>
               </Row>
               <Row>
-                <Button onPress={() => this.onButtonPress('LoginScreen')}>Logout</Button>
+                <Button onPress={() => firebase.auth().signOut()}>Logout</Button>
               </Row>
             </Grid>
           </View>

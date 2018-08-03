@@ -10,7 +10,7 @@ import styles from './Styles/LoginScreenStyle'
 
 
 class LoginScreen extends Component {
-  state: State = {
+  state = {
     loggedIn: null
   }
   componentWillMount() {

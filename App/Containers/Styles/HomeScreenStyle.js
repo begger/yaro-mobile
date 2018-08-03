@@ -3,8 +3,5 @@ import { ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  item: {
-    
-    paddingTop: 50,
-  }
+  
 })

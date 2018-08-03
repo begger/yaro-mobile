@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
 import firebase from 'firebase';
+import { connect } from 'react-redux'
 import { View } from 'react-native';
 import { Header, LoginForm, Button, Spinner } from './components/common';
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import { NavigationActions } from 'react-navigation'
 
-// Styles
 import styles from './Styles/LoginScreenStyle'
+
 
 class LoginScreen extends Component {
   state: State = {
@@ -28,17 +28,14 @@ class LoginScreen extends Component {
       });
   }
   renderContent = () => {
-      const { loggedIn } = this.state;
-      switch (loggedIn) {
-          case true:
-              return (
-                  <Button onPress={() => firebase.auth().signOut()}>Log out</Button>
-              )
-          case false:
-              return <LoginForm />;
-          default:
-              return <Spinner size="large" />;
-      }
+    const { loggedIn } = this.state;
+    if(loggedIn) 
+      this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }));
+    else if(!loggedIn)
+      return <LoginForm />;
+    else              
+      return <Spinner size="large" />;
+      
   }
   render() {
       return (
@@ -62,4 +59,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default LoginScreen
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
